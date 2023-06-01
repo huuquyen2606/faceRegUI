@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { useFirestore, useFirestoreCollection } from "reactfire";
+import { serverTimestamp } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 
 import {
@@ -66,6 +67,7 @@ export async function addUser({ name, image, note }: AddUserParams, store: Fires
     image: imageUrl,
     imageName,
     note,
+    updatedAt: serverTimestamp(),
   });
 }
 
@@ -95,5 +97,6 @@ export async function updateUser(
     name,
     image: newImageUrl,
     note,
+    updatedAt: serverTimestamp(),
   });
 }
